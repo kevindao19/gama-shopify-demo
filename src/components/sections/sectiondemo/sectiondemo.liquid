@@ -1,0 +1,74 @@
+<div class="layout-minisite">
+    {% for block in section.blocks %}
+    <div class="block-shopWU-text-image {% if block.settings.floatImage %}float-image{% endif %}">
+        <div class="container">
+            <div class="container__left">
+                <div class="image">
+                    {% if block.settings.image_large != empty %}
+                    <img class="image large hide-mobile" src="{{ block.settings.image_large | img_url: 'master' }}"
+                        alt="">
+                    {% endif %}
+
+                    {% if block.settings.image_small != empty %}
+                    <img class="image small hide-desktop" src="{{ block.settings.image_small | img_url: 'master' }}"
+                        alt="">
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="container__right">
+                <div class="text">
+                    <h3 class="h3">{{ block.settings.heading }}</h3>
+                    <div>
+                        {{ block.settings.descriptions }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% schema %}
+{
+"name": "ShopWU Text&Image",
+"class": "shopify-section--collection-large section-shopWU",
+"blocks": [
+{
+"type": "textwithimage",
+"name": "Text with Image",
+"settings": [
+{
+"type": "image_picker",
+"id": "image_large",
+"label": "Image Large"
+},
+{
+"type": "image_picker",
+"id": "image_small",
+"label": "Image Small"
+},
+{
+"type": "text",
+"id": "heading",
+"label": "Heading"
+},
+{
+"type": "richtext",
+"id": "descriptions",
+"label": "Description",
+"default": "<p>Write here...</p>"
+},
+{
+"type": "checkbox",
+"id": "floatImage",
+"label": "Image Right",
+"default": false
+}
+]
+}
+],
+"presets": [{
+"name": "Tis ShopWU Text Image"
+}]
+}
+{% endschema %}
